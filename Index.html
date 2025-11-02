@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dokuzu Series — Prototype</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">Dokuzu Series</div>
+    <div class="top-actions">
+      <select id="uiLanguage" title="UI Language">
+        <option value="en">English (default)</option>
+        <option value="hi">Hindi</option>
+        <option value="ko">Korean</option>
+        <option value="jp">Japanese</option>
+        <option value="br">Brazilian</option>
+        <option value="cn">Chinese</option>
+      </select>
+      <button id="btn-login" class="btn small">Login</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- LOGIN / SIGNUP -->
+    <section id="authPane" class="card auth">
+      <h2>Sign in / Sign up</h2>
+      <input id="emailInput" placeholder="Email" />
+      <input id="passInput" placeholder="Password" type="password" />
+      <div class="row">
+        <button id="signinBtn" class="btn">Sign In</button>
+        <button id="signupBtn" class="btn alt">Sign Up</button>
+      </div>
+      <p class="muted">Admins: personaldhairya@gmail.com / dokuzuseries@gmail.com</p>
+      <p class="muted">Admins must enter security code after login.</p>
+    </section>
+
+    <!-- APP UI (hidden until login) -->
+    <section id="appPane" class="hidden">
+      <aside class="sidebar">
+        <div id="profileBox" class="profile">
+          <div id="profileEmail">Not logged</div>
+          <div id="profileRole" class="muted">Role: Guest</div>
+          <div class="muted small">Switches used: <span id="switchCount">0</span>/3</div>
+        </div>
+
+        <nav class="nav">
+          <button class="nav-btn" data-view="home">Home</button>
+          <button class="nav-btn" data-view="library">Library</button>
+          <button class="nav-btn" data-view="favorites">Favorites</button>
+          <button class="nav-btn" data-view="downloads">Downloads</button>
+          <button class="nav-btn" data-view="admin" id="adminNav" style="display:none">Admin</button>
+          <button class="nav-btn" id="logout">Logout</button>
+        </nav>
+
+        <div class="small muted credit">Dokuzu Studio — Prototype</div>
+      </aside>
+
+      <section class="content">
+        <!-- Home -->
+        <div id="view-home" class="view active">
+          <h2>Welcome</h2>
+          <div id="rowsContainer"></div>
+        </div>
+
+        <!-- Library -->
+        <div id="view-library" class="view">
+          <h2>Library</h2>
+          <div id="libraryGrid" class="grid"></div>
+        </div>
+
+        <!-- Favorites -->
+        <div id="view-favorites" class="view">
+          <h2>Favorites</h2>
+          <div id="favGrid" class="grid"></div>
+        </div>
+
+        <!-- Downloads -->
+        <div id="view-downloads" class="view">
+          <h2>Downloads (simulated)</h2>
+          <div id="downloadGrid" class="grid"></div>
+        </div>
+
+        <!-- Admin -->
+        <div id="view-admin" class="view">
+          <h2>Admin Dashboard</h2>
+
+          <div class="admin-row">
+            <div class="card">
+              <h3>Upload / Create Title</h3>
+              <label>Title name<input id="adminTitle" placeholder="Title name" /></label>
+              <label>Category
+                <select id="adminCategory">
+                  <option value="film">Film</option>
+                  <option value="series">Series</option>
+                </select>
+              </label>
+              <label>Thumbnail (URL)<input id="adminThumbnail" placeholder="Thumbnail image URL" /></label>
+              <label>Initial season (series only)<input id="adminSeasonName" placeholder="Season 1" /></label>
+              <div class="row">
+                <button id="createTitleBtn" class="btn">Create</button>
+              </div>
+              <p class="muted">This prototype stores metadata locally (browser localStorage).</p>
+            </div>
+
+            <div class="card">
+              <h3>Manage Titles</h3>
+              <div id="adminTitlesList"></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Admin Tools (Edit / Add audio / Add season)</h3>
+            <div id="adminEditor"></div>
+          </div>
+        </div>
+
+        <!-- Player modal (simple) -->
+        <div id="playerModal" class="modal hidden">
+          <div class="modal-body">
+            <button id="closePlayer" class="btn small alt">Close</button>
+            <h3 id="playerTitle"></h3>
+            <div id="playerInfo" class="muted"></div>
+            <video id="videoPlayer" controls style="max-width:100%;margin-top:12px" />
+            <div class="row" style="margin-top:8px">
+              <label>Audio:
+                <select id="audioSelect"></select>
+              </label>
+              <label>Captions:
+                <select id="captionSelect"></select>
+              </label>
+            </div>
+            <div style="margin-top:8px">
+              <button id="favToggle" class="btn small">Favorite</button>
+            </div>
+          </div>
+        </div>
+
+      </section>
+    </section>
+  </main>
+
+  <footer class="footer">© Dokuzu Studio — Prototype</footer>
+
+  <script src="app.js"></script>
+</body>
+          </html>
